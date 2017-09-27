@@ -47,66 +47,6 @@
           <button type="submit" class="btn btn-info btn-block m-t-40">Iniciar</button>
         </form>
       </div>
-      <div id="register_wrapper">
-        <ul class="card-actions icons right-top">
-          <li>
-            <a href="javascript:void(0)" data-toggle="register">
-              <i class="zmdi zmdi-close"></i>
-            </a>
-          </li>
-        </ul>
-        <div class="logo">
-            <img src="assets/img/logo/ml-logo.png" alt="logo" class="logo-img">
-        </div>
-        <h1 class="login-title">
-          Create an account
-        </h1>
-        <div class="login-body">
-                    <div class="col-xs-12">
-                        <button class="btn btn-facebook btn-block"><i class="zmdi zmdi-facebook"></i> Sign Up with Facebook</button>
-                    </div>
-                    <div class="col-xs-12">
-                        <button class="btn btn-google btn-block"><i class="zmdi zmdi-google-plus"></i> Sign Up with Google</button>
-                    </div>
-                    <div class="col-xs-12">
-                        <button class="btn btn-twitter btn-block"><i class="zmdi zmdi-twitter"></i> Sign Up with Twitter</button>
-                    </div>
-
-          <form class="clear-both">
-                        <h2 class="text-center p-t-20">
-                            Or sign up below
-                        </h2>
-            <div class="form-group label-floating is-empty">
-              <label class="control-label">Name</label>
-              <input type="text" class="form-control">
-            </div>
-            <div class="form-group label-floating is-empty">
-              <label class="control-label">Email</label>
-              <input type="email" class="form-control">
-            </div>
-            <div class="form-group label-floating is-empty">
-              <label class="control-label">Password</label>
-              <input type="password" class="form-control">
-            </div>
-            <div class="form-group label-floating is-empty">
-              <label class="control-label">Confirm Password</label>
-              <input type="password" class="form-control">
-            </div>
-            <div class="checkbox inline-block">
-              <label>
-                <input type="checkbox" class="checkbox-inline" value="">
-                I agree to the <a href="javascript:void(0)">terms of services</a>
-              </label>
-            </div>
-            <a href="javascript:void(0)" class="btn btn-info btn-block m-t-40">Create my account</a>
-          </form>
-        </div>
-        <div class="login-footer p-15">
-          <p>
-            Already have an account? <a href="javascript:void(0)" data-toggle="register">Sign In</a>
-          </p>
-        </div>
-      </div>
     </div>
   </div>
   <script src="{{ asset('assets/js/vendor.bundle.js') }}"></script>
