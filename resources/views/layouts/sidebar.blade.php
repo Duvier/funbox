@@ -27,15 +27,12 @@
             </div>
             <ul class="nav nav-pills nav-stacked">
                 <li class="active"><a href="{{ url('/') }}"><i class="zmdi zmdi-home"></i>Inicio</a></li>
-                <li><a href="{{ url('/') }}"><i class="zmdi zmdi-male"></i> Clases</a></li>
+                <li><a href="{{ url('/') }}"><i class="zmdi zmdi-assignment"></i> Clases</a></li>
+                <li><a href="{{ route('user.index') }}"><i class="zmdi zmdi-accounts"></i> Usuarios</a></li>
                 <li class="nav-dropdown">
                     <a href="#"><i class="zmdi zmdi-wrench"></i>Configuración</a>
                     <ul class="nav-sub">
                         <li><a href="{{ url('/') }}"><i class="zmdi zmdi-settings"></i> Preferencias</a></li>
-                        <li><a href="{{ url('/') }}"><i class="zmdi zmdi-account-circle"></i> Usuarios</a></li>
-                        <li><a href="{{ url('/') }}"><i class="zmdi zmdi-accounts-list-alt"></i> Cargos</a></li>
-                        <li><a href="{{ url('/') }}"><i class="zmdi zmdi-collection-text"></i> Categorías</a></li>
-                        <li><a href="{{ url('/') }}"><i class="zmdi zmdi-balance"></i> Franquicias</a></li>
                     </ul>
                 </li>
             </ul>

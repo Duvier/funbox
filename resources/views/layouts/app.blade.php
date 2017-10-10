@@ -14,7 +14,9 @@
     <link rel="icon" href="{{ asset('assets/img/logo/funboxlogo.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('assets/css/vendor.bundle.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/app.bundle.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/theme-f.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/theme-b.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/toastr.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
 </head>
 <body>
     <div id="app_wrapper">
@@ -24,16 +26,28 @@
             <div id="content_wrapper" >
                 @include('layouts.breadcrumb')
                 <div id="content" class="container-fluid">
+                    <nav class="btn-fab-group">
+                      <button class="btn btn-primary btn-fab fab-menu animate-fab " data-fab="left" id="add-btn">
+                        <i class="zmdi zmdi-plus"></i>
+                      </button>
+                      <ul class="nav-sub" id="add-options">
+                        <li> <a href="#" data-toggle="modal" data-target="#modal-user" data-toggle="tooltip" data-placement="top" title="Usuario" class="btn btn-green btn-fab btn-fab-sm"><i class="zmdi zmdi-account-add"></i></a></li>
+                        <li> <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="Clase" class="btn btn-info btn-fab btn-fab-sm"><i class="zmdi zmdi-assignment"></i></a></li>
+                        {{-- <li> <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="Check All" class="btn btn-green btn-fab btn-fab-sm"><i class="zmdi zmdi-check-all"></i></a></li>
+                        <li> <a href="javascript:void(0)" data-toggle="tooltip" data-placement="bottom" title="Edit" class="btn btn-info btn-fab btn-fab-sm"><i class="zmdi zmdi-edit"></i></a></li> --}}
+                      </ul>
+                    </nav>
                     @yield('content')
                 </div>
             </div>
         @include('layouts.footer')
         </section>
     </div>
-    @include('layouts/aside')
 
     <!-- Scripts -->
     <script src="{{ asset('assets/js/vendor.bundle.js') }}"></script>
     <script src="{{ asset('assets/js/app.bundle.js') }}"></script>
+    <script src="{{ asset('js/vue-axios.js') }}"></script>
+    @yield('scripts')
 </body>
 </html>

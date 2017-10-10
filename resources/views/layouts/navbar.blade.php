@@ -33,39 +33,18 @@
                     {{-- <li><a href="{{ route('login') }}">Entrar</a></li>
                     <li><a href="{{ route('register') }}">Registrarme</a></li> --}}
                 @else
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            {{ Auth::user()->name }} <span class="caret"></span>
+                    <li>
+                        <a href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                     document.getElementById('logout-form').submit();">
+                            Salir
                         </a>
-
-                        <ul class="dropdown-menu" role="menu">
-                            <li>
-                                <a href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
-                                    Logout
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
-                            </li>
-                        </ul>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
                     </li>
                 @endif
-                <li class="last">
-                    <a href="javascript:void(0)" data-toggle-state="sidebar-overlay-open" data-key="rightSideBar">
-                        <i class="mdi mdi-playlist-plus"></i>
-                    </a>
-                </li>
             </ul>
         </div>
-        <form role="search" action="" class="navbar-form" id="navbar_form">
-            <div class="form-group">
-                <input type="text" placeholder="Search and press enter..." class="form-control" id="navbar_search" autocomplete="off">
-                <i data-navsearch-close class="zmdi zmdi-close close-search"></i>
-            </div>
-            <button type="submit" class="hidden btn btn-default">Submit</button>
-        </form>
     </nav>
 </header>

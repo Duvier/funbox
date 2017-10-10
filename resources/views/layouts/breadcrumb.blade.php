@@ -5,9 +5,9 @@
                 <header id="header">
                     <h1>@yield('title')</h1>
                     <ol class="breadcrumb">
-                      <li><a href="index.html">Page Layouts</a></li>
-                      <li><a href="javascript:void(0)">Boxed Layouts</a></li>
-                      <li class="active">Boxed Layout v1</li>
+                      <li><a href="index.html">Inicio</a></li>
+                      <li><a href="javascript:void(0)">@yield('module')</a></li>
+                      <li class="active">@yield('view')</li>
                     </ol>
                 </header>
             </div>
