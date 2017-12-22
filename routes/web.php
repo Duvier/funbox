@@ -1,35 +1,28 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::get('/', 'Auth\LoginController@index');
 
-Route::get('/', function () {
-    return view('Auth.login');
-});
 
-Route::get('Class', function () {
-    return view('templates/class');
-});
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/error/{code}','ErrorController@index');
 
-/*---- Módulo User ----*/
-	Route::get('user/all', 'UserController@getAll');
-	Route::post('user/changeState', 'UserController@changeState');
-	Route::get('user/restore/{id}' , 'UserController@restore');
-	Route::get('user/delete/{id}/{logical?}', 'UserController@delete');
-	Route::resource('user' , 'UserController',['except' => ['show', 'create', 'edit']]);
-/*---- Módulo class_schedules ----*/
-	Route::get('classSchedules/all', 'ClassSchedulesController@getAll');
-	Route::get('classSchedules/restore/{id}' , 'ClassSchedulesController@restore');
-	Route::get('classSchedules/delete/{id}/{logical?}', 'ClassSchedulesController@delete')->name('classSchedules.delete');
-	Route::resource('classSchedules' , 'ClassSchedulesController',['except' => ['show', 'create', 'edit']]);
+Route::group(['middleware' => 'auth'],function(){
+	Route::get('/mora','MoraController@index')->name('mora');
+	Route::get('/baloto', 'MoraController@baloto')->name('baloto');
+	Route::get('/home', 'HomeController@index')->name('home');
+	Route::get('/clients', 'Api\ClientsController@index')->name('clients');
+	Route::get('/clients/getAll', 'Api\ClientsController@getAll');
+});
+/*-- Rutas para el estudiante --*/
+Route::group(['middleware' => ['auth', 'mora']], function(){
+	Route::get('/estudiante/perfil/pagado', 'Estudiante\PerfilController@pagado');
+	Route::get('/estudiante/perfil/pendiente', 'Estudiante\PerfilController@pendiente');
+	Route::get('/estudiante/perfil', 'Estudiante\PerfilController@index');
+	Route::post('/estudiante/perfil/update/{id}', 'Estudiante\PerfilController@update');
+});
+/*-- Rutas para el profesor --*/
+Route::group(['middleware' => ['auth', 'teacher']], function(){
+	Route::get('/profesor/perfil', 'Profesor\PerfilController@index');
+	Route::get('/profesor/clases', 'Profesor\ClasesController@index');
+});

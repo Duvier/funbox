@@ -1,55 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <title>Funbox | Entrar</title>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Poppins:300,400,500,600" rel="stylesheet">
-    <link rel="icon" href="{{ asset('assets/img/logo/funboxlogo.png') }}" type="image/x-icon">
-    <link rel="stylesheet" href="{{ asset('assets/css/vendor.bundle.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/app.bundle.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/theme-b.css') }}">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <meta name="mobile-web-app-capable" content=yes>
+    <link rel="icon" sizes="192x192" href="{{ asset('img/logo_cenal.png') }}">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>CENAL</title>
+
+    <!-- Styles -->
+    <link href="{{ asset('font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/plantilla.css') }}" rel="stylesheet">
 </head>
-<body id="auth_wrapper" >
-  <div id="login_wrapper">
-    <div id="login_content">
-            <div class="logo">
-                <img src="{{ asset('assets/img/logo/funboxlogo.png') }}" alt="logo" class="logo-img">
+<body class="gray-bg">
+    <div class="middle-box text-center loginscreen animated fadeInDown">
+        <div>
+            <div>
+                <h5 class="logo-name">
+                    <img src="{{ asset('img/logo_cenal.png') }}" alt="">
+                </h5>
             </div>
-      <h1 class="login-title">
-        Iniciar sesión
-      </h1>
-      <div class="login-body">
-        <form method="POST" action="{{ route('login') }}">
-        {{ csrf_field() }}
-          <div class="form-group label-floating is-empty">
-            <label class="control-label">Correo</label>
-            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-            @if ($errors->has('email'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('email') }}</strong>
-                </span>
-            @endif
-          </div>
-          <div class="form-group label-floating is-empty">
-            <label class="control-label">Contraseña</label>
-            <input type="password" class="form-control" name="password" required>
-          </div>
-          <a href="javascript:void(0)" class="forgot-pass pull-right">¿Olvidaste tu contraseña?</a>
-          <div class="checkbox inline-block">
-            <label>
-              <input type="checkbox" class="checkbox-inline" {{ old('remember') ? 'checked' : '' }}>
-              Recordarme
-            </label>
-          </div>
-          <button type="submit" class="btn btn-info btn-block m-t-40">Iniciar</button>
-        </form>
-      </div>
+            <h3>Bienvenido a CENAL</h3>
+            <p>CENTRO NACIONAL DE CAPACITACIÓN LABORAL</p>
+            <form id="form-login" class="m-t" role="form" method="POST" action="{{ route('login') }}">
+                {{ csrf_field() }}
+                <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
+                    <input 
+                    name="email"
+                    type="email"
+                    class="form-control"
+                    placeholder="Correo"
+                    required=""
+                    value="{{ old('email') }}" 
+                    >
+                    {!! $errors->first('email', '<span class="help-block">:message</span>') !!}
+                </div>
+                <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
+                    <input name="password" type="password" class="form-control" placeholder="Contraseña" required="">
+                    {!! $errors->first('password', '<span class="help-block">:message</span>') !!}
+                </div>
+                <button type="submit" class="btn btn-success block full-width m-b">Entrar</button>
+                {{-- <a href="#"><small>Olvidaste tu contraseña?</small></a>
+                <p class="text-muted text-center"><small>Do not have an account?</small></p>
+                <a class="btn btn-sm btn-white btn-block" href="register.html">Create an account</a> --}}
+            </form>
+        </div>
     </div>
-  </div>
-  <script src="{{ asset('assets/js/vendor.bundle.js') }}"></script>
-    <script src="{{ asset('assets/js/app.bundle.js') }}"></script>
+</div>
+  <script src="{{ asset('js/plantilla.js') }}"></script>
 </body>
 </html>

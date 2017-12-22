@@ -1,62 +1,30 @@
-<?php namespace App;
+<?php
 
-use Esensi\Model\Contracts\ValidatingModelInterface;
-use Esensi\Model\Traits\ValidatingModelTrait;
-use Illuminate\Auth\Authenticatable;
-use Illuminate\Auth\Passwords\CanResetPassword;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
-use Illuminate\Database\Eloquent\Model;
-use Zizaco\Entrust\Traits\EntrustUserTrait;
-use Acoustep\EntrustGui\Contracts\HashMethodInterface;
-use Hash;
+namespace App;
 
-class User extends Model implements AuthenticatableContract, CanResetPasswordContract, ValidatingModelInterface, HashMethodInterface
+use Laravel\Passport\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
+class User extends Authenticatable
 {
-  use Authenticatable, CanResetPassword, ValidatingModelTrait, EntrustUserTrait;
-
-    protected $throwValidationExceptions = true;
-
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
-    protected $table = 'users';
+    use HasApiTokens, Notifiable;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password', 'phone', 'identification_card', 'pay', 'premium'];
+    protected $fillable = [
+        'name', 'email', 'password',
+    ];
 
     /**
-     * The attributes excluded from the model's JSON form.
+     * The attributes that should be hidden for arrays.
      *
      * @var array
      */
-    protected $hidden = ['password', 'remember_token'];
-
-    protected $hashable = ['password'];
-
-    protected $rulesets = [
-
-        'creating' => [
-            'email'      => 'required|email|unique:users',
-            'password'   => 'required',
-        ],
-
-        'updating' => [
-            'email'      => 'required|email|unique:users',
-            'password'   => '',
-        ],
+    protected $hidden = [
+        'password', 'remember_token',
     ];
-
-    public function entrustPasswordHash() 
-    {
-        $this->password = Hash::make($this->password);
-        $this->save();
-    }
-
 }

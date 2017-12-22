@@ -1,50 +1,54 @@
-<header id="app_topnavbar-wrapper">
-    <nav role="navigation" class="navbar topnavbar">
-        <div class="nav-wrapper">
-            <div id="logo_wrapper" class="nav navbar-nav">
-                <ul>
-                    <li class="logo-icon">
-                        <a href="index.html">
-                            <div class="logo">
-                                <img src="{{ asset('assets/img/logo/funboxlogo.png') }}" alt="Logo">
-                            </div>
-                            <h1 class="brand-text">Funbox</h1>
-                            {{-- <img  class="brand-text" src="{{ asset('assets/img/logo/funboxlogo.png') }}"> --}}
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <ul class="nav navbar-nav left-menu ">
-                <li class="menu-icon">
-                    <a href="javascript:void(0)" role="button" data-toggle-state="app_sidebar-menu-collapsed" data-key="leftSideBar">
-                        <i class="mdi mdi-backburger"></i>
-                    </a>
+<div class="row border-bottom white-bg">
+    <nav class="navbar navbar-static-top" role="navigation">
+        <div class="navbar-header">
+            <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+                <i class="fa fa-reorder"></i>
+            </button>
+            <a href="{{ route('home') }}" class="navbar-brand">CENAL</a>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar">
+            <ul class="nav navbar-nav">
+                <li class="">
+                    <a href="{{ route('home') }}"><i class="fa fa-home"></i> <span class="nav-label">Inicio</span></a>
                 </li>
-            </ul>
-            <ul class="nav navbar-nav left-menu">
                 <li>
-                    <a href="javascript:void(0)" class="nav-link" data-toggle-profile="profile-open">
-                        <i class="zmdi zmdi-account"></i>
-                    </a>
+                    <a href="{{ url('/profesor/clases') }}"><i class="fa fa-calendar"></i> <span class="nav-label">Clases</span> </a>
+                </li>
+                @if(Auth::user()->rol == 0)
+                <li>
+                    <a href="{{ url('/estudiante/perfil') }}"><i class="fa fa-user-circle"></i> <span class="nav-label">Perfil</span> </a>
+                </li>
+                @endif
+                @if(Auth::user()->rol == 1)
+                <li>
+                    <a href="{{ url('/profesor/perfil') }}"><i class="fa fa-user-circle"></i> <span class="nav-label">Perfil</span> </a>
+                </li>
+                @endif
+                @if(Auth::user()->rol == 2)
+                <li>
+                    <a href="{{ url('/admin/clases') }}"><i class="fa fa-gears"></i> <span class="nav-label">Configuración académica</span> </a>
+                @endif
                 </li>
             </ul>
-            <ul class="nav navbar-nav pull-right">
-                @if (Auth::guest())
-                    {{-- <li><a href="{{ route('login') }}">Entrar</a></li>
-                    <li><a href="{{ route('register') }}">Registrarme</a></li> --}}
+            <ul class="nav navbar-top-links navbar-right">
+                <li><a href="{{ route('clients') }}"><i class="fa fa-code"></i> Soy desarrollador</a></li>
+                @if(Auth::guest())
+                <li>
+                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                        <i class="fa fa-sign-out"></i> Entrar
+                    </a>
+                </li>
                 @else
-                    <li>
-                        <a href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                                     document.getElementById('logout-form').submit();">
-                            Salir
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            {{ csrf_field() }}
-                        </form>
-                    </li>
+                <li>
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                        <i class="fa fa-sign-out"></i> Salir
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                </li>
                 @endif
             </ul>
         </div>
     </nav>
-</header>
+</div>

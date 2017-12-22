@@ -3,51 +3,35 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <meta name="mobile-web-app-capable" content=yes>
+    <link rel="icon" sizes="192x192" href="{{ asset('img/logo_cenal.png') }}">
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title') | Funbox</title>
-    <!-- Font -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Poppins:300,400,500,600" rel="stylesheet">
-    <!-- Styles -->
-    <link rel="icon" href="{{ asset('assets/img/logo/funboxlogo.png') }}" type="image/x-icon">
-    <link rel="stylesheet" href="{{ asset('assets/css/vendor.bundle.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/app.bundle.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/theme-b.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/toastr.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
-</head>
-<body>
-    <div id="app_wrapper">
-        @include('layouts/navbar')
-        @include('layouts/sidebar')
-        <section id="content_outer_wrapper">
-            <div id="content_wrapper" >
-                @include('layouts.breadcrumb')
-                <div id="content" class="container-fluid">
-                    <nav class="btn-fab-group">
-                      <button class="btn btn-primary btn-fab fab-menu animate-fab " data-fab="left" id="add-btn">
-                        <i class="zmdi zmdi-plus"></i>
-                      </button>
-                      <ul class="nav-sub" id="add-options">
-                        <li> <a href="#" data-toggle="modal" data-target="#modal-user" data-toggle="tooltip" data-placement="top" title="Usuario" class="btn btn-green btn-fab btn-fab-sm"><i class="zmdi zmdi-account-add"></i></a></li>
-                        <li> <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="Clase" class="btn btn-info btn-fab btn-fab-sm"><i class="zmdi zmdi-assignment"></i></a></li>
-                        {{-- <li> <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="Check All" class="btn btn-green btn-fab btn-fab-sm"><i class="zmdi zmdi-check-all"></i></a></li>
-                        <li> <a href="javascript:void(0)" data-toggle="tooltip" data-placement="bottom" title="Edit" class="btn btn-info btn-fab btn-fab-sm"><i class="zmdi zmdi-edit"></i></a></li> --}}
-                      </ul>
-                    </nav>
-                    @yield('content')
-                </div>
-            </div>
-        @include('layouts.footer')
-        </section>
-    </div>
+    <title>@yield('title') | CENAL</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('assets/js/vendor.bundle.js') }}"></script>
-    <script src="{{ asset('assets/js/app.bundle.js') }}"></script>
-    <script src="{{ asset('js/vue-axios.js') }}"></script>
-    @yield('scripts')
+    <!-- Styles -->
+    <link href="{{ asset('font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/plantilla.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/fullcalendar.print.css') }}" rel="stylesheet" media='print'>
+</head>
+<body  class="top-navigation skin-1">
+    <div id="wrapper">            
+        <div id="page-wrapper" class="gray-bg">
+            @if(!Auth::guest())
+                @include('layouts.navbar')
+            @endif
+            <div class="wrapper wrapper-content">
+                @yield('content')
+            </div>
+        </div>
+    </div>
+<!-- Scripts -->
+    <script src="{{ asset('js/plantilla.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.0/locale/es.js"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+      @stack('scripts')
 </body>
 </html>
